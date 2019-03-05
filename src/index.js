@@ -844,18 +844,18 @@ Class.prototype.getAsYM = function(Y, M, type) {
 }
 
 //系统消息
-Class.prototype.systemDate = function(newDate) {
-  var thisDate = newDate || new Date()
+Class.prototype.systemDate = function (newDate) {
+  var thisDate = newDate || new Date();
+  var dayOfEnd = this.config.dayOfEnd
   return {
-    year: thisDate.getFullYear(), //年
-    month: thisDate.getMonth(), //月
-    date: thisDate.getDate(), //日
-    hours: newDate ? newDate.getHours() : 0, //时
-    minutes: newDate ? newDate.getMinutes() : 0, //分
-    seconds: newDate ? newDate.getSeconds() : 0 //秒
+    year: thisDate.getFullYear() //年
+    , month: thisDate.getMonth() //月
+    , date: thisDate.getDate() //日
+    , hours: newDate ? newDate.getHours() : dayOfEnd ? 23 : 0 //时
+    , minutes: newDate ? newDate.getMinutes() : dayOfEnd ? 59 : 0 //分
+    , seconds: newDate ? newDate.getSeconds() : dayOfEnd ? 59 : 0 //秒
   }
-}
-
+};
 //日期校验
 Class.prototype.checkDate = function(fn) {
   var that = this,
